@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src'self'; img-src'self' data: https://picsum.photos;">
+    <title>优学23级4班班级网站</title>
+    <style>
+        /* 导入字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* 页面背景渐变色 */
+        body {
+            background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+            animation: bgImageAnimation 20s infinite;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* 定义背景图片切换的动画 */
+        @keyframes bgImageAnimation {
+            0% {
+                background-image: url('image1.jpg');
+            }
+
+            25% {
+                background-image: url('image1.jpg');
+            }
+
+            30% {
+                background-image: url('image2.jpg');
+            }
+
+            55% {
+                background-image: url('image2.jpg');
+            }
+
+            60% {
+                background-image: url('image3.jpg');
+            }
+
+            85% {
+                background-image: url('image3.jpg');
+            }
+
+            90% {
+                background-image: url('image4.jpg');
+            }
+
+            100% {
+                background-image: url('image4.jpg');
+            }
+        }
+
+        header {
+            /* 优化顶部标题栏颜色为彩虹渐变色，调整透明度 */
+            background: linear-gradient(to right, rgba(255, 0, 0, 0.7), rgba(255, 127, 0, 0.7), rgba(255, 255, 0, 0.7), rgba(0, 255, 0, 0.7), rgba(0, 0, 255, 0.7), rgba(75, 0, 130, 0.7), rgba(238, 130, 238, 0.7));
+            color: white;
+            text-align: center;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out; /* 淡入动画 */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            opacity: 0;
+            animation: fadeInTitle 2s ease-in-out forwards;
+            position: relative;
+            /* 调整文字颜色渐变 */
+            background: linear-gradient(45deg, #ff7f50, #007bff, #4b0082, #ee82ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes fadeInTitle {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        header h1::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        header h1::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .carousel {
+            width: 80%;
+            max-width: 800px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            margin-bottom: 50px;
+            animation: slideIn 1s ease-in-out; /* 从左侧滑入动画 */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+        }
+
+            .carousel-item img {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.3s ease, filter 0.3s ease;
+            }
+
+                .carousel-item img:hover {
+                    transform: scale(1.1) rotate(10deg);
+                    filter: saturate(1.5);
+                }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            z-index: 1000;
+        }
+
+            .carousel-arrow.prev {
+                left: 10px;
+            }
+
+            .carousel-arrow.next {
+                right: 10px;
+            }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+            .carousel-indicators button {
+                width: 10px;
+                height: 10px;
+                border: none;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.5);
+                cursor: pointer;
+            }
+
+                .carousel-indicators button.active {
+                    background-color: white;
+                }
+
+        .content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 50px;
+            transition: transform 0.3s ease;
+            position: relative;
+            animation: scaleIn 1s ease-in-out; /* 从中心放大动画 */
+            border-image: linear-gradient(to right, #ccc, transparent) 1;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .content:hover {
+            transform: translateY(-8px);
+        }
+
+        .class-info h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+            position: relative;
+            animation: titleRise 1s ease-in-out; /* 标题升起动画 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes titleRise {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .class-info p:nth-of-type(1) {
+            font-style: italic;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .class-info p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+            .class-info p:hover {
+                color: #0056b3;
+                background-color: rgba(0, 123, 255, 0.1);
+            }
+
+        .assignments h2 {
+            color: #ff6600;
+            margin-bottom: 20px;
+            font-size: 28px;
+            position: relative;
+            animation: titleRise 1s ease-in-out;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .assignments-list {
+            list-style: none;
+        }
+
+            .assignments-list li {
+                margin-bottom: 15px;
+                padding: 15px;
+                background-color: #f8f8f8;
+                border-radius: 8px;
+                font-size: 18px;
+                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+                .assignments-list li:hover {
+                    transform: translateX(5px);
+                }
+
+        /* 通报批评板块样式 */
+        .criticism {
+            margin-top: 20px;
+        }
+
+            .criticism h2 {
+                color: #ff0000;
+                margin-bottom: 10px;
+                font-size: 28px;
+                position: relative;
+                animation: titleRise 1s ease-in-out;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+        .arrow {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 7px solid #333;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+            .arrow:hover {
+                transform: scale(1.2);
+            }
+
+        .criticism-list {
+            list-style: none;
+            max-height: 0;
+            overflow: hidden;
+            margin-top: 10px;
+            opacity: 0;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+        }
+
+            .criticism-list.show {
+                max-height: 200px; /* 可以根据实际内容调整 */
+                opacity: 1;
+            }
+
+            .criticism-list li {
+                margin-bottom: 5px;
+                color: #333;
+                font-size: 18px;
+            }
+
+        /* 视频样式 */
+        .video-container {
+            margin-top: 20px;
+        }
+
+        video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+            footer a img {
+                width: 40px;
+                height: 40px;
+                transition: transform 0.3s ease;
+            }
+
+                footer a img:hover {
+                    transform: rotate(360deg) scale(1.1); /* 悬停时旋转并放大 */
+                }
+
+        /* 动态图形元素，这里简单用伪元素模拟闪烁星星 */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px white;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        /* 信息可视化简单示例，这里用div模拟环形图展示男女比例，实际可使用更专业图表库 */
+        .gender-chart {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            position: relative;
+            border-radius: 50%;
+            border: 5px solid #ccc;
+        }
+
+            .gender-chart::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 50%;
+                height: 100%;
+                background-color: #007bff;
+                border-top-left-radius: 50px;
+                border-bottom-left-radius: 50px;
+                animation: rotateChart 5s infinite linear;
+            }
+
+        @keyframes rotateChart {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 滚动动画简单模拟，这里让元素在滚动到一定位置时出现 */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        body.scrolled .scroll-reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <!-- 这里是关于pjax的使用示例，复制就完事了，兼容绝大部分网站 -->
+    <link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+    <script>
+        $(document).pjax('a[target!=_blank]', '.container', {
+            fragment: '.container',
+            timeout: 5000
+        });
+        $(document).on('pjax:start', function () {
+            NProgress.start();
+        });
+        $(document).on('pjax:end', function () {
+            NProgress.done();
+        });
+    </script>
+</head>
+
+<body>
+    <header class="header">
+        <h1>优学23级4班班级网站</h1>
+        <p>欢迎来到我们班级的专属网站</p>
+    </header>
+
+    <div class="container">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img src="1.jpg" alt="班级活动照片1" onerror="handleImageError(this)">
+                </div>
+                <div class="carousel-item">
+                    <img src="2.jpg" alt="班级活动照片2" onerror="handleImageError(this)">
+                </div>
+                <div class="carousel-item">
+                    <img src="3.jpg" alt="班级活动照片3" onerror="handleImageError(this)">
+                </div>
+                <div class="carousel-item">
+                    <img src="4.jpg" alt="班级活动照片4" onerror="handleImageError(this)">
+                </div>
+                <div class="carousel-item">
+                    <img src="5.jpg" alt="班级活动照片5" onerror="handleImageError(this)">
+                </div>
+            </div>
+            <button class="carousel-arrow prev">&#10094;</button>
+            <button class="carousel-arrow next">&#10095;</button>
+            <div class="carousel-indicators">
+                <button data-index="0" class="active"></button>
+                <button data-index="1"></button>
+                <button data-index="2"></button>
+                <button data-index="3"></button>
+                <button data-index="4"></button>
+            </div>
+        </div>
+
+        <div class="content class-info scroll-reveal">
+            <h2>班级介绍</h2>
+            <p>四班心齐，团结奋进，追求卓越！</p>
+            <p>班主任：田晓彤</p>
+            <p>我们是惠民优学23级4班，共有44名学生。分为两个专业：计算机，新能源。我们的班级以团结、勤奋、创新为班训，致力于为每位同学提供一个良好的学习环境。</p>
+        </div>
+
+        <div class="content assignments scroll-reveal">
+            <h2>短假作业</h2>
+            <ul class="assignments-list">
+                <li>数学作业：我勒个豆，数学老师太好了直接就是没布置！</li>
+                <li>语文作业：背诵词语</li>
+                <li>英语作业：默写第二单元下半部分的单词</li>
+            </ul>
+        </div>
+
+        <!-- 通报批评板块 -->
+        <div class="content criticism scroll-reveal">
+            <h2>通报批评 <span class="arrow" id="arrow"></span></h2>
+            <ul class="criticism-list" id="criticismList">
+                <li>闫申奥：在本周课堂上多次违反纪律。被逮到仍不承认反驳称！！清者自清！！</li>
+                <li>吕诚俊：未按时完成作业。</li>
+            </ul>
+            <div class="video-container">
+                <video controls>
+                    <!-- 请将此处的视频链接替换为实际的视频链接 -->
+                    <source src="123.mp4" type="video/mp4">
+                    你的浏览器不支持播放此视频。
+                </video>
+            </div>
+        </div>
+
+        <!-- 信息可视化示例 -->
+        <div class="gender-chart"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 优学23级4班版权所有。</p>
+        <p>联系方式：[3409367842@qq.com]</p>
+        <a href="https://v.douyin.com/zLXDLWK1rY8/" target="_blank">
+            <p>优学官方抖音</p>
+            <img src="douyin.png" alt="优学官方抖音">
+        </a>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const arrow = document.getElementById('arrow');
+            const criticismList = document.getElementById('criticismList');
+
+            arrow.addEventListener('click', function () {
+                if (criticismList.classList.contains('show')) {
+                    criticismList.classList.remove('show');
+                    arrow.style.transform = 'rotate(0deg)';
+                } else {
+                    criticismList.classList.add('show');
+                    arrow.style.transform = 'rotate(180deg)';
+                }
+            });
+
+            // 滚动事件监听，简单实现滚动动画触发
+            window.addEventListener('scroll', function () {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const revealElements = document.querySelectorAll('.scroll-reveal');
+                revealElements.forEach(function (element) {
+                    if (scrollTop > element.offsetTop - window.innerHeight + 100) {
+                        document.body.classList.add('scrolled');
+                    }
+                });
+            });
+
+            const carouselInner = document.querySelector('.carousel-inner');
+            const carouselItems = document.querySelectorAll('.carousel-item');
+            const prevButton = document.querySelector('.carousel-arrow.prev');
+            const nextButton = document.querySelector('.carousel-arrow.next');
+            const indicators = document.querySelectorAll('.carousel-indicators button');
+            let currentIndex = 0;
+            const intervalTime = 5000; // 自动切换时间（毫秒）
+            let autoPlayTimer;
+
+            // 更新显示的图片
+            function updateCarousel(index) {
+                const translateValue = -index * 100 + '%';
+                carouselInner.style.transform = `translateX(${translateValue})`;
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                indicators[index].classList.add('active');
+            }
+
+            // 显示下一张图片
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % carouselItems.length;
+                updateCarousel(currentIndex);
+            }
+
+            // 显示上一张图片
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+                updateCarousel(currentIndex);
+            }
+
+            // 自动播放
+            function startAutoPlay() {
+                autoPlayTimer = setInterval(showNextImage, intervalTime);
+            }
+
+            // 停止自动播放
+            function stopAutoPlay() {
+                clearInterval(autoPlayTimer);
+            }
+
+            // 点击指示器切换图片
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', function () {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    currentIndex = index;
+                    updateCarousel(currentIndex);
+                    stopAutoPlay(); // 停止自动播放
+                });
+            });
+
+            // 按钮事件绑定
+            nextButton.addEventListener('click', function () {
+                showNextImage();
+                stopAutoPlay();
+            });
+
+            prevButton.addEventListener('click', function () {
+                showPrevImage();
+                stopAutoPlay();
+            });
+
+            // 图片加载错误处理
+            function handleImageError(img) {
+                img.src = 'https://picsum.photos/800/400';
+                img.alt = '图片加载失败，显示默认图片';
+                console.error('图片加载失败，路径: ', img.getAttribute('src'));
+            }
+
+            // 初始化
+            updateCarousel(currentIndex);
+            startAutoPlay(); // 开始自动播放
+
+            // 移除不必要的 transitionend 事件监听，避免图片跳回第一张
+            // carouselInner.addEventListener('transitionend', function () {
+            //     carouselInner.style.transition = 'none';
+            //     carouselInner.style.transform = 'translateX(0)';
+            //     currentIndex = 0;
+            //     carouselInner.style.transition = 'transform 0.5s ease';
+            // });
+        });
+    </script>
+    <!-- 引入思幻悬浮音乐播放器开始 -->
+    <script src="http://cdn.sihuanyun.com/xfyybfqzdbf/xfyybfq.js"></script>
+</body>
+
+</html>    
